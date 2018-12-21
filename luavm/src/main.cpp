@@ -1,8 +1,11 @@
 #include  <iostream>
 #include  "chunk.hpp"
 
+
 int main(int argc, char* argv[])
 {
-	std::cout << "Hello world!" << std::endl;
+	using namespace luavm;
+	LuaHeader head;
+	std::cout << head;
 	return 0;
 }
