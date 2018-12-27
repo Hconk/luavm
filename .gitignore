@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/luavm/luac.out
+/luavm/2
+/luavm/1
+/luavm/test
