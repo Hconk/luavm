@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
 	is >> head1;
 	Prototype t;
 	is >> t;
+	t.print();
 
 	head1.print();
 	

@@ -57,6 +57,7 @@ namespace luavm
 	public:
 		template<typename Stream>
 		friend Stream& operator>>(Stream& in, Upvalue& upv);
+		void print();
 	private:
 		uint8_t Instack;
 		uint8_t Idx;
@@ -82,6 +83,8 @@ namespace luavm
 	public:
 		template<typename Stream>
 		friend Stream& operator>>(Stream& in, Constant& con);
+
+		void print();
 	private:
 		tag m_tag;
 		std::variant<void*, bool,double,uint8_t, uint64_t, std::string> data;
@@ -138,6 +141,8 @@ namespace luavm
 	public:
 		template<typename Stream>
 		friend Stream& operator>>(Stream& in, LocVar& lov);
+
+		void print();
 	private:
 		std::string VarName;
 		uint32_t StartPC;
@@ -156,6 +161,7 @@ namespace luavm
 	public:
 		template<typename Stream>
 		friend Stream& operator>>(Stream& in, Prototype& proto);
+		void print();
 
 	private:
 		std::string Source;
@@ -168,7 +174,7 @@ namespace luavm
 		std::vector<Constant> Constants;
 		std::vector<Upvalue> Upvalues;
 		std::vector<Prototype> Protos;
-		std::vector<uint32_t> LineInfol;
+		std::vector<uint32_t> LineInfo;
 		std::vector<LocVar> LocVars;
 		std::vector<std::string> UpvalueNames;
 	};
@@ -177,7 +183,7 @@ namespace luavm
 	Stream& operator>>(Stream& in, Prototype& proto)
 	{
 		//unknown
-		uint8_t unknow;
+		uint8_t unknow = 0;
 		unpack(in, unknow);
 		unpack(in, proto.Source, proto.LineDefined, proto.LastLineDefined);
 		unpack(in,proto.NumParams, proto.IsVararg, proto.MaxStackSize );
@@ -219,7 +225,7 @@ namespace luavm
 		{
 			uint32_t line_info;
 			unpack(in, line_info);
-			proto.LineInfol.push_back(line_info);
+			proto.LineInfo.push_back(line_info);
 		}
 
 		//读取局部变量
