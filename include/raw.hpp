@@ -18,7 +18,7 @@ namespace luavm
 		//return out << std::setiosflags(std::ios::uppercase) << std::hex << std::setw(2) << std::setfill('0') << fw.v + 0;
 		return out << fw.v;
 	}
-	//Õë¶Ô¶Ôµ¥¸öÊı¾İ´ò°ü¼°½â°üº¯ÊıÄ£°åµÄ ¸¡µãĞÍ±äÁ¿ ÌØ»¯°æ±¾
+	//é’ˆå¯¹å¯¹å•ä¸ªæ•°æ®æ‰“åŒ…åŠè§£åŒ…å‡½æ•°æ¨¡æ¿çš„ æµ®ç‚¹å‹å˜é‡ ç‰¹åŒ–ç‰ˆæœ¬
 	template<typename Stream>
 	Stream& pack(Stream& out, double d) {
 		auto p = reinterpret_cast<uint64_t*>(&d);
@@ -43,7 +43,7 @@ namespace luavm
 		return in;
 	}
 
-	//¶Ôµ¥¸ö±äÁ¿½øĞĞ´ò°ü£¬½â°ü£¬ Ö§³Ö²»Í¬×Ö½Ú´óĞ¡Êı¾İ
+	//å¯¹å•ä¸ªå˜é‡è¿›è¡Œæ‰“åŒ…ï¼Œè§£åŒ…ï¼Œ æ”¯æŒä¸åŒå­—èŠ‚å¤§å°æ•°æ®
 	template<typename Stream, typename T>
 	Stream& pack(Stream& out, T c)
 	{
@@ -71,7 +71,7 @@ namespace luavm
 	}
 
 
-	//¶Ô¶àÖÖÀàĞÍÊı×éÊı¾İ½øĞĞ´ò°ü¼°½â°üµÄÄ£°åº¯Êı
+	//å¯¹å¤šç§ç±»å‹æ•°ç»„æ•°æ®è¿›è¡Œæ‰“åŒ…åŠè§£åŒ…çš„æ¨¡æ¿å‡½æ•°
 	template<typename Stream, typename T, int size>
 	Stream& pack(Stream& out, T(&p)[size]) {
 		std::copy(p, p + size, std::ostream_iterator<FixHex<T>>(out));
@@ -92,7 +92,7 @@ namespace luavm
 	}
 
 
-	//¶Ô×Ö·û´®Êı¾İ½øĞĞ´ò°ü¼°½â°ü
+	//å¯¹å­—ç¬¦ä¸²æ•°æ®è¿›è¡Œæ‰“åŒ…åŠè§£åŒ…
 	template<typename Stream>
 	Stream& pack(Stream& out, std::string &str)
 	{
@@ -150,14 +150,14 @@ namespace luavm
 	
 
 
-	//´ò°ü·½·¨µÄ±ä²ÎÄ£°åº¯Êı£¬Ö§³Ö¶àÖÖÀàĞÍ£¬²»ÏŞ²ÎÊıµÄ¶ÔÊı¾İ½øĞĞ´ò°ü
+	//æ‰“åŒ…æ–¹æ³•çš„å˜å‚æ¨¡æ¿å‡½æ•°ï¼Œæ”¯æŒå¤šç§ç±»å‹ï¼Œä¸é™å‚æ•°çš„å¯¹æ•°æ®è¿›è¡Œæ‰“åŒ…
 	template<typename Stream, typename T, typename... Args>
 	Stream& pack(Stream& out, T &d, Args&... args) {
 		pack(out, d);
 		pack(out, args...);
 		return out;
 	}
-	//½â°ü·½·¨µÄ±ä²ÎÄ£°åº¯Êı£¬Ö§³Ö¶àÖÖÀàĞÍ£¬²»ÏŞ²ÎÊıµÄ¶ÔÊı¾İ½øĞĞ½â°ü
+	//è§£åŒ…æ–¹æ³•çš„å˜å‚æ¨¡æ¿å‡½æ•°ï¼Œæ”¯æŒå¤šç§ç±»å‹ï¼Œä¸é™å‚æ•°çš„å¯¹æ•°æ®è¿›è¡Œè§£åŒ…
 	template<typename Stream, typename T, typename... Args>
 	Stream& unpack(Stream& in, T &d, Args&... args)
 	{

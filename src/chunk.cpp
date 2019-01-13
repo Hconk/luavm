@@ -10,14 +10,16 @@
 #define PRINT_HEX(name) do {	\
 	phex(name, sizeof(name));	\
 } while(0);
+
+
 namespace luavm
 {
 	/*
-			Ä¬ÈÏÖµ
-	uint8_t signature[4]{ 0x1B,0x4C,0x75,0x61 };					// [ ESC, L, u, a ] ASCIIÂë
-	uint8_t version = MAJOR_VERSION * 16 + MINOR_VERSION;			//Lua °æ±¾ºÅ
-	uint8_t format = 0;												//¶ş½øÖÆchunk¸ñÊ½ £¬¹Ù·½ÊµÏÖÄ¬ÈÏ°æ±¾ºÅ0
-	uint8_t luacData[6]{ 0x19,0x93,0x0D,0x0A,0x1A,0x0A};			//LUAC_DATA : Ç°Á½¸ö×Ö½Ú0x1993 lua1.0·¢²¼Äê·İ£¬ ºóËÄ¸ö×Ö½ÚÒÀ´ÎÊÇ »Ø³µ·ûºÅ(0x0D), »»ĞĞ·û(0x0A), Ìæ»»·û(0x1A) ,ÁíÒ»¸ö»»ĞĞ·û(0x0A)
+			é»˜è®¤å€¼
+	uint8_t signature[4]{ 0x1B,0x4C,0x75,0x61 };					// [ ESC, L, u, a ] ASCIIç 
+	uint8_t version = MAJOR_VERSION * 16 + MINOR_VERSION;			//Lua ç‰ˆæœ¬å·
+	uint8_t format = 0;												//äºŒè¿›åˆ¶chunkæ ¼å¼ ï¼Œå®˜æ–¹å®ç°é»˜è®¤ç‰ˆæœ¬å·0
+	uint8_t luacData[6]{ 0x19,0x93,0x0D,0x0A,0x1A,0x0A};			//LUAC_DATA : å‰ä¸¤ä¸ªå­—èŠ‚0x1993 lua1.0å‘å¸ƒå¹´ä»½ï¼Œ åå››ä¸ªå­—èŠ‚ä¾æ¬¡æ˜¯ å›è½¦ç¬¦å·(0x0D), æ¢è¡Œç¬¦(0x0A), æ›¿æ¢ç¬¦(0x1A) ,å¦ä¸€ä¸ªæ¢è¡Œç¬¦(0x0A)
 	uint8_t cintSize = 4;
 	uint8_t sizetSize = 8;
 	uint8_t instructionSize = 4;

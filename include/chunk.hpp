@@ -21,10 +21,10 @@ namespace luavm
 
 		void print();
 	private:
-		uint8_t signature[4]{};			// [ ESC, L, u, a ] ASCIIÂë
-		uint8_t version = 0;			//Lua °æ±¾ºÅ 
-		uint8_t format = 0;				//¶ş½øÖÆchunk¸ñÊ½ £¬¹Ù·½ÊµÏÖÄ¬ÈÏ°æ±¾ºÅ0
-		uint8_t luacData[6]{};			//LUAC_DATA : Ç°Á½¸ö×Ö½Ú0x1993 lua1.0·¢²¼Äê·İ£¬ ºóËÄ¸ö×Ö½ÚÒÀ´ÎÊÇ »Ø³µ·ûºÅ(0x0D), »»ĞĞ·û(0x0A), Ìæ»»·û(0x1A) ,ÁíÒ»¸ö»»ĞĞ·û(0x0A)
+		uint8_t signature[4]{};			// [ ESC, L, u, a ] ASCIIç 
+		uint8_t version = 0;			//Lua ç‰ˆæœ¬å· 
+		uint8_t format = 0;				//äºŒè¿›åˆ¶chunkæ ¼å¼ ï¼Œå®˜æ–¹å®ç°é»˜è®¤ç‰ˆæœ¬å·0
+		uint8_t luacData[6]{};			//LUAC_DATA : å‰ä¸¤ä¸ªå­—èŠ‚0x1993 lua1.0å‘å¸ƒå¹´ä»½ï¼Œ åå››ä¸ªå­—èŠ‚ä¾æ¬¡æ˜¯ å›è½¦ç¬¦å·(0x0D), æ¢è¡Œç¬¦(0x0A), æ›¿æ¢ç¬¦(0x1A) ,å¦ä¸€ä¸ªæ¢è¡Œç¬¦(0x0A)
 		uint8_t cintSize = 0;
 		uint8_t sizetSize = 0;
 		uint8_t instructionSize = 0;
@@ -190,7 +190,7 @@ namespace luavm
 		unpack(in, proto.Code);
 		uint32_t constant_size;
 
-		//¶ÁÈ¡Constant
+		//è¯»å–Constant
 		unpack(in, constant_size);
 		for(int i = 0;i < constant_size;i++)
 		{
@@ -199,7 +199,7 @@ namespace luavm
 			proto.Constants.push_back(temp);
 		}
 
-		//¶ÁÈ¡up value
+		//è¯»å–up value
 		uint32_t upv_size;
 		unpack(in, upv_size);
 		for(int i = 0;i < upv_size;i++)
@@ -209,7 +209,7 @@ namespace luavm
 			proto.Upvalues.push_back(upv);
 		}
 
-		//¶ÁÈ¡Protoº¯ÊıÔ­ĞÍ
+		//è¯»å–Protoå‡½æ•°åŸå‹
 		uint32_t pro_size;
 		unpack(in, pro_size);
 		for(int i = 0;i < pro_size;i++)
@@ -218,7 +218,7 @@ namespace luavm
 			in >> pro;
 			proto.Protos.push_back(pro);
 		}
-		//¶ÁÈ¡ĞĞºÅ±í
+		//è¯»å–è¡Œå·è¡¨
 		uint32_t lineInfo_size;
 		unpack(in, lineInfo_size);
 		for(int i = 0;i < lineInfo_size; i++)
@@ -228,7 +228,7 @@ namespace luavm
 			proto.LineInfo.push_back(line_info);
 		}
 
-		//¶ÁÈ¡¾Ö²¿±äÁ¿
+		//è¯»å–å±€éƒ¨å˜é‡
 		uint32_t lov_size;
 		unpack(in, lov_size);
 		for(int i = 0;i < lov_size;i++)
@@ -238,7 +238,7 @@ namespace luavm
 			proto.LocVars.push_back(lov);
 		}
 
-		//¶ÁÈ¡Up valueÃû×Ö
+		//è¯»å–Up valueåå­—
 		uint32_t upv_name_size;
 		unpack(in, upv_name_size);
 		for(int i = 0;i < upv_name_size;i++)
